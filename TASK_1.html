@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"content="IE=edge">
+    <meta name="viewport"content="width=device-width,initial-scale=1.0">
+    <title>L2_T3</title>
+    <style>
+        header{
+            color:black;
+            font-size:15px;
+            padding-left:50px;
+            padding-top:10px;
+            background-color:white;
+            height:25px;}
+        body{
+            background-image:url("https://e0.pxfuel.com/wallpapers/917/647/desktop-wallpaper-blue-texture-background-powerpoint-background-for-powerpoint-templates-royal-blue-texture.jpg");
+            margin:0px;}
+
+        .b1{
+            background-color:rgb(246, 240, 240);
+            text-align:left;
+            margin:50px 15px 15px 50px;
+            height:250px;
+            width:250px;}
+        
+        input.b2[type="text"]{
+            margin:15px 15px 10px 10px;
+            width:220px;
+            text-align: left;}
+
+        textarea{
+            height:150px;
+            width:220px;
+            margin:5px 15px 10px 10px;
+            text-align:left;}
+
+       button{
+            height:20px;
+            width:220px;
+            margin-left:10px;
+            margin-bottom:17px;}
+        
+       .T1{
+        display:flex;}
+       
+       table{
+        margin-top:0px;}
+       
+      th{
+        vertical-align:top;
+        color:white;
+        border-bottom:2px solid white;}
+
+       td{
+        color:white;
+        margin-left:15px;
+        text-align:left;
+        padding-top:10px;
+        padding-left:70px;
+        padding-right:40px;
+        padding-bottom:10px;}
+
+       .cell{
+        padding-top:50px;
+        padding-left:70px;
+        padding-right:70px;
+        padding-bottom:10px;
+        font-size:25px;}
+       
+      .T2{
+            background:red;
+            color:black;
+            width:50px;}
+    </style>
+</head>
+<body>
+    <header>To-Do List Web App</header>
+    <div class="T1">
+    <div class="b1">
+        <form>
+             <input class ="b2" type="text" id="name" placeholder="Title">
+             <textarea rows="40" cols="20" placeholder="Description"></textarea>
+             <button type="button" onclick="Submit()">Save</button>
+        </form>
+    </div>
+        <table>
+        <thead>
+            <th class="cell">Title</th>
+            <th class="cell">Description</th>
+            <th class="cell">Delete</th>
+        </thead>
+        <tbody>
+        </tbody>
+        </table>
+    </div>  
+    <script>
+        function Submit(){
+          var title=document.getElementById("name").value;
+          var description=document.querySelector("textarea").value;
+      
+          if (title && description){
+            addTodoItem(title, description);
+            clearForm();
+          }
+        }
+      
+        function addTodoItem(title, description) {
+          var table=document.querySelector("table");
+          var newRow=table.insertRow(-1);
+          var titleCell=newRow.insertCell(0);
+          titleCell.textContent=title;
+          var descriptionCell=newRow.insertCell(1);
+          descriptionCell.textContent=description;
+          var deleteCell=newRow.insertCell(2);
+          var deleteButton=document.createElement("button");
+          deleteButton.textContent="X";
+          deleteButton.classList.add("T2");
+          deleteButton.addEventListener("click", function(){
+            deleteRow(this);
+          });
+          deleteCell.appendChild(deleteButton);}
+        function deleteRow(button) {
+          var row=button.parentNode.parentNode;
+          row.parentNode.removeChild(row);}
+        function clearForm() {
+          document.getElementById("name").value="";
+          document.querySelector("textarea").value="";}
+      </script>
+</body>
+</html>
